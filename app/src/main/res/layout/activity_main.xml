@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:textSize="35dp"
+        android:gravity="center"
+        android:text="Equipo de futbol" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Codigo" />
+
+    <EditText
+        android:id="@+id/etcodigo"
+        android:layout_width="300dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="P.E. AA2010" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Nombre" />
+
+    <EditText
+        android:id="@+id/etnombre"
+        android:layout_width="300dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="P.E. Deportivo Cali" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Ciudad" />
+
+    <EditText
+        android:id="@+id/etciudad"
+        android:layout_width="300dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="25dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="P.E. Cali-Colombia" />
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Categoria" />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <RadioButton
+                android:id="@+id/rbprofesional"
+                android:layout_width="match_parent"
+                android:textSize="25dp"
+                android:checked="true"
+                android:layout_height="40dp"
+                android:text="  Profesional" />
+
+            <RadioButton
+                android:id="@+id/rbascenso"
+                android:layout_width="match_parent"
+                android:textSize="25dp"
+                android:layout_height="40dp"
+                android:text="  Ascenso" />
+
+            <RadioButton
+                android:id="@+id/rbaficionado"
+                android:layout_width="match_parent"
+                android:textSize="25dp"
+                android:layout_height="40dp"
+                android:text="  Aficionado" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/cbactivo"
+        android:layout_width="300dp"
+        android:layout_marginTop="10dp"
+        android:textSize="25dp"
+        android:enabled="false"
+        android:layout_height="wrap_content"
+        android:text=" Activo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btadicionar"
+            android:textSize="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="Adicionar"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:text="Adicionar" />
+
+        <Button
+            android:id="@+id/btbuscar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="23dp"
+            android:layout_weight="1"
+            android:text="Buscar" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btmodificar"
+            android:textSize="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:text="Modificar" />
+
+        <Button
+            android:id="@+id/btanular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="23dp"
+            android:layout_weight="1"
+            android:text="Anular" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="23dp"
+            android:layout_weight="1"
+            android:text="Cancelar" />
+    </LinearLayout>
+</LinearLayout>

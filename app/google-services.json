@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "660128651771",
+    "project_id": "futbolpersonal-4613c",
+    "storage_bucket": "futbolpersonal-4613c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660128651771:android:e6f51fad1b1ce08c5a135e",
+        "android_client_info": {
+          "package_name": "com.example.futbol_personalsoft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660128651771-lfkki8d1vkeotghd7itg5j3lj257186i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVYfpd6FJBs4Vrw6UEjcB6xjclyzaNIyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660128651771-lfkki8d1vkeotghd7itg5j3lj257186i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
