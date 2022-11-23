@@ -148,6 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="23dp"
+            android:onClick="Consultar"
             android:layout_weight="1"
             android:text="Buscar" />
     </LinearLayout>
@@ -162,6 +163,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="Modificar"
             android:layout_marginRight="5dp"
             android:text="Modificar" />
 
