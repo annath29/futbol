@@ -152,6 +152,64 @@ public class MainActivity extends AppCompatActivity {
             jetcodigo.requestFocus();
         }
     }
+
+    public void Anular(View view){
+        codigo=jetcodigo.getText().toString();
+        nombre=jetnombre.getText().toString();
+        ciudad=jetciudad.getText().toString();
+        if (codigo.isEmpty() || nombre.isEmpty() || ciudad.isEmpty()){
+            Toast.makeText(this, "Los campos son requeridos", Toast.LENGTH_SHORT).show();
+            jetcodigo.requestFocus();
+        }
+        else {
+            if (respuesta == true) {
+                if (activo.equals("no")){
+                    Toast.makeText(this, "No se puede anular no esta activo", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    if (jrbprofesional.isChecked()) {
+                        categoria = "Profesional";
+                    }
+                    else {
+                        if (jrbascenso.isChecked()) {
+                            categoria = "Ascenso";
+                        } else {
+                            categoria = "Aficionado";
+                        }
+                    }
+                    // Create a new user with a first and last name
+                    Map<String, Object> equipo = new HashMap<>();
+                    equipo.put("Codigo", codigo);
+                    equipo.put("Nombre", nombre);
+                    equipo.put("Ciudad", ciudad);
+                    equipo.put("Categoria", categoria);
+                    equipo.put("Activo", "No");
+
+                    // Modify a new document with a generated ID
+                    db.collection("Campeonato").document(ident_doc)
+                            .set(equipo)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(MainActivity.this, "Documento anulado", Toast.LENGTH_SHORT).show();
+                                    Limpiar_campos();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(MainActivity.this, "Error anulando documento", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            }
+            else {
+                Toast.makeText(this, "Debe primero consultar", Toast.LENGTH_SHORT).show();
+                jetcodigo.requestFocus();
+            }
+        }
+    }
+
     private void Buscar_equipo(){
         respuesta=false;
         codigo=jetcodigo.getText().toString();
@@ -187,9 +245,12 @@ public class MainActivity extends AppCompatActivity {
                                     //campo activo
                                     if (document.getString("Activo").equals("si")){
                                         jcbactivo.setChecked(true);
+                                        activo="si";
                                     }
                                     else{
                                         jcbactivo.setChecked(false);
+                                        Toast.makeText(MainActivity.this, "Equipo inactivo", Toast.LENGTH_SHORT).show();
+                                        activo="no";
                                     }
                                 }
                             } else {

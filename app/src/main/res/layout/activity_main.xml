@@ -173,6 +173,7 @@
             android:layout_height="wrap_content"
             android:textSize="23dp"
             android:layout_weight="1"
+            android:onClick="Anular"
             android:text="Anular" />
     </LinearLayout>
     <LinearLayout
