@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             equipo.put("Categoria", categoria);
             equipo.put("Activo","si");
 
-// Add a new document with a generated ID
+            // Add a new document with a generated ID
             db.collection("Campeonato")
                     .add(equipo)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -95,32 +95,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public void Consultar(View view){
         Buscar_equipo();
     }
 
     public void Modificar(View view){
-        if(respuesta==true){
-            //codigo=jetcodigo.getText().toString();
-            //nombre=jetnombre.getText().toString();
-            //ciudad=jetciudad.getText().toString();
-            if(jrbprofesional.isChecked()) {
-                categoria="Profesional";
-            }
-            else {
-                if (jrbascenso.isChecked()) {
-                    categoria="Ascenso";
+        codigo=jetcodigo.getText().toString();
+        nombre=jetnombre.getText().toString();
+        ciudad=jetciudad.getText().toString();
+        if (codigo.isEmpty() || nombre.isEmpty() || ciudad.isEmpty()){
+            Toast.makeText(this, "Los campos son requeridos", Toast.LENGTH_SHORT).show();
+            jetcodigo.requestFocus();
+        }
+        else{
+            if(respuesta==true){
+                if(jrbprofesional.isChecked()) {
+                    categoria="Profesional";
                 }
-                else{
-                    categoria="Aficionado";
+                else {
+                    if (jrbascenso.isChecked()) {
+                        categoria="Ascenso";
+                    }
+                    else{
+                        categoria="Aficionado";
+                    }
                 }
-            }
-            /*if (codigo.isEmpty() || nombre.isEmpty() || ciudad.isEmpty()){
-                Toast.makeText(this, "Los campos son requeridos", Toast.LENGTH_SHORT).show();
-                jetcodigo.requestFocus();
-            }
-            else{*/
                 // Create a new user with a first and last name
                 Map<String, Object> equipo = new HashMap<>();
                 equipo.put("Codigo", codigo);
@@ -144,12 +143,11 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this,"Error actualizando documento...",Toast.LENGTH_SHORT).show();
                             }
                         });
-            //}
-        }
-        else
-        {
-            Toast.makeText(this, "Debe Consultar primero", Toast.LENGTH_SHORT).show();
-            jetcodigo.requestFocus();
+            }
+            else {
+                Toast.makeText(this, "Debe Consultar primero", Toast.LENGTH_SHORT).show();
+                jetcodigo.requestFocus();
+            }
         }
     }
 
@@ -210,6 +208,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void Cancelar(View view)
+    {
+        Limpiar_campos();
+    }
+
     private void Buscar_equipo(){
         respuesta=false;
         codigo=jetcodigo.getText().toString();
@@ -225,32 +228,34 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
-                                respuesta=true;
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    //Log.d(TAG, document.getId() + " => " + document.getData());
-                                    ident_doc=document.getId();//captura id donde esta el codigo
-                                    jetnombre.setText(document.getString("Nombre"));
-                                    jetciudad.setText(document.getString("Ciudad"));
-                                    if(document.getString("Categoria").equals("Profesional")){
-                                        jrbprofesional.setChecked(true);
-                                    }
-                                    else {
-                                        if(document.getString("Categoria").equals("Aficionado")){
-                                            jrbaficionado.setChecked(true);
-                                        }
-                                        else{
-                                            jrbascenso.setChecked(true);
-                                        }
-                                    }
-                                    //campo activo
-                                    if (document.getString("Activo").equals("si")){
-                                        jcbactivo.setChecked(true);
-                                        activo="si";
+                                    respuesta=true;
+                                    if(document.getString("Activo").equals("no")){
+                                        Toast.makeText(MainActivity.this, "El documento existe pero no esta activo", Toast.LENGTH_SHORT).show();
                                     }
                                     else{
-                                        jcbactivo.setChecked(false);
-                                        Toast.makeText(MainActivity.this, "Equipo inactivo", Toast.LENGTH_SHORT).show();
-                                        activo="no";
+                                        ident_doc=document.getId();//captura id donde esta el codigo
+                                        jetnombre.setText(document.getString("Nombre"));
+                                        jetciudad.setText(document.getString("Ciudad"));
+                                        if(document.getString("Categoria").equals("Profesional")){
+                                            jrbprofesional.setChecked(true);
+                                        }
+                                        else {
+                                            if(document.getString("Categoria").equals("Aficionado")){
+                                                jrbaficionado.setChecked(true);
+                                            }
+                                            else{
+                                                jrbascenso.setChecked(true);
+                                            }
+                                        }
+                                        //campo activo
+                                        if (document.getString("Activo").equals("si")){
+                                            jcbactivo.setChecked(true);
+                                            activo="si";
+                                        }
+                                        else{
+                                            jcbactivo.setChecked(false);
+                                        }
                                     }
                                 }
                             } else {
